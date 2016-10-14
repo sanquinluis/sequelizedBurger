@@ -1,0 +1,71 @@
+<div class="jumbotron">
+	<div class="container">
+		<h1>Eat Da Burger</h1>
+		<h2>Burgers</h2>
+	</div>
+</div> <!--end jumbo-->
+
+<div class="container">
+	<div class="row">
+		<div class=" col-sm-4">
+			<ul>
+				{{#each burgers}}
+					{{#unless this.devoured}}
+						<li>
+							{{this.burger_name}}
+
+								<form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+									<input type="hidden" name="devoured" value="true">
+									<button class="btn btn-primary" type="submit">Devour IT!</button>
+								</form>
+						</li>
+					{{/unless}}
+				{{/each}}
+			</ul>
+		</div>
+	
+		<div class="col-sm-4" id="devouredB">
+			<ul>
+				{{#each burgers}}
+					{{#if this.devoured}}
+						<li>
+							{{this.burger_name}}
+
+								<form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+									<input type="hidden" name="devoured" value="false">
+									<button class="btn btn-danger" type="submit">DELETE!</button>
+								</form>
+						</li>
+					{{/if}}
+				{{/each}}
+			</ul>
+
+		</div>
+	</div> <!--row1-->
+	<div class="row">
+		<div class="col-sm-4" id="inputB">
+			<h2>Add a Burger</h2>
+				<form class="create-update-form" action="burgers/create" method="POST">
+					<div class="from-group">
+						<label for="bur">Burger Name:</label>
+						<input type="text" id="bur" name="name">
+					</div>
+
+					<div class="from-group">
+						<label for="devo">Devoured?</label><br>
+						<input type="radio" name="devoured" value="1" checked> Devoured!<br>
+						<input type="radio" name="devoured" value="0"> Not Eaten
+					</div>
+
+						<button class="btn btn-primary" type="submit">submit</button>
+				</form>
+		</div>
+	</div>
+
+</div> <!--Container-->
+
+
+
+
+
+
